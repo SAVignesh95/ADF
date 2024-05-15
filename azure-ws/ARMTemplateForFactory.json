@@ -123,6 +123,75 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Area of Circle')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Radius",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "Radius",
+							"value": 5
+						}
+					},
+					{
+						"name": "Area of Circle",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Radius",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "Area of Circle",
+							"value": {
+								"value": "@string(mul(pipeline().parameters.Pi\n,mul(variables('Radius'),variables('Radius')))\n)",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"Pi": {
+						"type": "float",
+						"defaultValue": 3.14
+					}
+				},
+				"variables": {
+					"Radius": {
+						"type": "Integer"
+					},
+					"Area of Circle": {
+						"type": "Integer"
+					}
+				},
+				"folder": {
+					"name": "Set Variable"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Get Metadata Demo 001')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -233,7 +302,7 @@
 						"typeProperties": {
 							"variableName": "Area",
 							"value": {
-								"value": "@mul\n(\n    int(variables('length'))\n    ,int(variables('breadth'))\n)",
+								"value": "int(@mul\n(\n    int(variables('length'))\n    ,int(variables('breadth'))\n)\n)",
 								"type": "Expression"
 							}
 						}
