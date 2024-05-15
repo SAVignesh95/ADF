@@ -5,20 +5,11 @@
 			"referenceName": "LS_ADLS_eystgaccnt",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"FileNameDS": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().FileNameDS",
-					"type": "Expression"
-				},
 				"folderPath": "user-profiles/raw",
 				"fileSystem": "adf-container"
 			},
