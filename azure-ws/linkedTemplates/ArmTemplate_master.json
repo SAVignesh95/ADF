@@ -19,11 +19,19 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_AzureSqlDatabase'"
 		},
+		"LS_Completed_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_Completed'"
+		},
 		"LS_ADLS_MetaData_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://eystgaccnt.dfs.core.windows.net/"
 		},
 		"LS_ADLS_eystgaccnt_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://eystgaccnt.dfs.core.windows.net/"
+		},
+		"LS_Completed_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://eystgaccnt.dfs.core.windows.net/"
 		},
@@ -63,11 +71,17 @@
 					"LS_AzureSqlDatabase_connectionString": {
 						"value": "[parameters('LS_AzureSqlDatabase_connectionString')]"
 					},
+					"LS_Completed_accountKey": {
+						"value": "[parameters('LS_Completed_accountKey')]"
+					},
 					"LS_ADLS_MetaData_properties_typeProperties_url": {
 						"value": "[parameters('LS_ADLS_MetaData_properties_typeProperties_url')]"
 					},
 					"LS_ADLS_eystgaccnt_properties_typeProperties_url": {
 						"value": "[parameters('LS_ADLS_eystgaccnt_properties_typeProperties_url')]"
+					},
+					"LS_Completed_properties_typeProperties_url": {
+						"value": "[parameters('LS_Completed_properties_typeProperties_url')]"
 					}
 				}
 			},

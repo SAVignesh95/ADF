@@ -14,10 +14,16 @@
 		"LS_AzureSqlDatabase_connectionString": {
 			"value": ""
 		},
+		"LS_Completed_accountKey": {
+			"value": ""
+		},
 		"LS_ADLS_MetaData_properties_typeProperties_url": {
 			"value": "https://eystgaccnt.dfs.core.windows.net/"
 		},
 		"LS_ADLS_eystgaccnt_properties_typeProperties_url": {
+			"value": "https://eystgaccnt.dfs.core.windows.net/"
+		},
+		"LS_Completed_properties_typeProperties_url": {
 			"value": "https://eystgaccnt.dfs.core.windows.net/"
 		},
 		"containerUri": {
