@@ -55,7 +55,7 @@
 				"typeProperties": {
 					"variableName": "Area",
 					"value": {
-						"value": "@mul\n(\n    int(variables('length'))\n    ,int(variables('breadth'))\n)",
+						"value": "int(@mul\n(\n    int(variables('length'))\n    ,int(variables('breadth'))\n)\n)",
 						"type": "Expression"
 					}
 				}
