@@ -26,6 +26,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -37,6 +38,8 @@
 		"folder": {
 			"name": "Get Meta Data"
 		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2024-05-15T07:14:45Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

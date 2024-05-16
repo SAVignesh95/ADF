@@ -75,6 +75,8 @@
 		"folder": {
 			"name": "Set Variable"
 		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2024-05-15T07:45:39Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

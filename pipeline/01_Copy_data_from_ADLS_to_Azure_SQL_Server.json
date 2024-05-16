@@ -74,6 +74,8 @@
 		"folder": {
 			"name": "Copy Data"
 		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2024-05-15T06:45:20Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

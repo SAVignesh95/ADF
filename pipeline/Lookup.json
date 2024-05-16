@@ -204,6 +204,8 @@
 		"folder": {
 			"name": "Lookup"
 		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2024-05-15T08:08:34Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }
