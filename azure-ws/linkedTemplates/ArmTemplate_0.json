@@ -103,7 +103,7 @@
 					}
 				},
 				"folder": {
-					"name": "Set Variable"
+					"name": "Data Movement Activities/Set Variable"
 				},
 				"annotations": [],
 				"lastPublishTime": "2024-05-15T07:45:39Z"
@@ -190,7 +190,7 @@
 					}
 				},
 				"folder": {
-					"name": "Set Variable"
+					"name": "Data Movement Activities/Set Variable"
 				},
 				"annotations": [],
 				"lastPublishTime": "2024-05-15T07:45:39Z"
@@ -255,7 +255,7 @@
 					}
 				},
 				"folder": {
-					"name": "Append Variable"
+					"name": "Data Movement Activities/Append Variable"
 				},
 				"annotations": []
 			},
@@ -580,6 +580,33 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DS_AzureSQL_InactiveUsers')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_AzureSqlDatabase",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Id",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "inactive_users"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_AzureSqlDatabase')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/01_Copy_data_from_ADLS_to_Azure_SQL_Server')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -660,7 +687,7 @@
 					"elapsedTimeMetric": {}
 				},
 				"folder": {
-					"name": "Copy Data"
+					"name": "Data Movement Activities/Copy Data"
 				},
 				"annotations": [],
 				"lastPublishTime": "2024-05-15T06:45:20Z"
@@ -841,7 +868,7 @@
 					"elapsedTimeMetric": {}
 				},
 				"folder": {
-					"name": "Delete Directory"
+					"name": "Data Movement Activities/Delete Directory"
 				},
 				"annotations": [],
 				"lastPublishTime": "2024-05-15T07:52:27Z"
@@ -897,7 +924,7 @@
 					"elapsedTimeMetric": {}
 				},
 				"folder": {
-					"name": "Get Meta Data"
+					"name": "Data Movement Activities/Get Meta Data"
 				},
 				"annotations": [],
 				"lastPublishTime": "2024-05-15T07:14:45Z"
@@ -966,7 +993,7 @@
 					"elapsedTimeMetric": {}
 				},
 				"folder": {
-					"name": "Lookup"
+					"name": "Data Movement Activities/Lookup"
 				},
 				"annotations": [],
 				"lastPublishTime": "2024-05-15T08:08:34Z"
@@ -1054,13 +1081,110 @@
 					"elapsedTimeMetric": {}
 				},
 				"folder": {
-					"name": "Failed"
+					"name": "Data Movement Activities/Failed"
 				},
 				"annotations": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/DS_user_info')]",
 				"[concat(variables('factoryId'), '/datasets/DS_ADLS_adfcontainer_user_profile_output_json')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Delete Inactive Users')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Fetch Inactive User Ids",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "DS_AzureSQL_InactiveUsers",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "ForEach - loop thru Inactive User Ids",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Fetch Inactive User Ids",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Fetch Inactive User Ids').output.value",
+								"type": "Expression"
+							},
+							"isSequential": true,
+							"activities": [
+								{
+									"name": "Stored procedure1",
+									"type": "SqlServerStoredProcedure",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"storedProcedureName": "[[dbo].[inactive_users_proc]",
+										"storedProcedureParameters": {
+											"id": {
+												"value": {
+													"value": "@item().id",
+													"type": "Expression"
+												},
+												"type": "Int32"
+											}
+										}
+									},
+									"linkedServiceName": {
+										"referenceName": "LS_AzureSqlDatabase",
+										"type": "LinkedServiceReference"
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "Data Transformation Activity/Stored Procedure"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DS_AzureSQL_InactiveUsers')]",
+				"[concat(variables('factoryId'), '/linkedServices/LS_AzureSqlDatabase')]"
 			]
 		}
 	]
