@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "ForEach1",
+				"name": "Loop thru inactive users from variable array",
 				"type": "ForEach",
 				"dependsOn": [],
 				"userProperties": [],
@@ -15,7 +15,7 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "Stored procedure1",
+							"name": "SP to del inactive users using variable array",
 							"type": "SqlServerStoredProcedure",
 							"dependsOn": [],
 							"policy": {
@@ -31,7 +31,7 @@
 								"storedProcedureParameters": {
 									"Id": {
 										"value": {
-											"value": "@item().Id",
+											"value": "@item()",
 											"type": "Expression"
 										},
 										"type": "Int32"
