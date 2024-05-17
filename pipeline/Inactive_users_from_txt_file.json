@@ -1,5 +1,5 @@
 {
-	"name": "pipeline3",
+	"name": "Inactive_users_from_txt_file",
 	"properties": {
 		"activities": [
 			{
@@ -32,10 +32,61 @@
 					},
 					"firstRowOnly": false
 				}
+			},
+			{
+				"name": "Iterate thru Ids fetched from Inactive Userstxt file",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Fetch Inactive User Ids from txt file",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Fetch Inactive User Ids from txt file').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Stored procedure to delete inactive users",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[inactive_users_proc]",
+								"storedProcedureParameters": {
+									"ID": {
+										"value": {
+											"value": "@item().Id",
+											"type": "Expression"
+										},
+										"type": "Int32"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "LS_AzureSqlDatabase",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
 			}
 		],
 		"folder": {
-			"name": "Assignment"
+			"name": "Assignment/Delete Inactive uers fetched from txt file"
 		},
 		"annotations": []
 	}
