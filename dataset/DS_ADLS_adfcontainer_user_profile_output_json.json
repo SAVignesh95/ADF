@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "user-profiles/output_json",
+				"folderPath": "user-profiles/Assignment/Assignment Output/json files",
 				"fileSystem": "adf-container"
 			}
 		},
