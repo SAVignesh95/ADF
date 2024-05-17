@@ -1,0 +1,84 @@
+{
+	"name": "01_for_each",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.listOfCities",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Append variable1",
+							"type": "AppendVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FinalListOfCities",
+								"value": {
+									"value": "@concat('City-',item())",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "ForEach1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "ConcatCity",
+					"value": {
+						"value": "@variables('FinalListOfCities')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"listOfCities": {
+				"type": "array",
+				"defaultValue": [
+					"New York",
+					"London",
+					"Tokyo",
+					"Delhi",
+					"Bengaluru",
+					"Chennai"
+				]
+			}
+		},
+		"variables": {
+			"FinalListOfCities": {
+				"type": "Array"
+			},
+			"ConcatCity": {
+				"type": "Array"
+			}
+		},
+		"folder": {
+			"name": "Control Flow Activity/02_FOR EACH"
+		},
+		"annotations": []
+	}
+}

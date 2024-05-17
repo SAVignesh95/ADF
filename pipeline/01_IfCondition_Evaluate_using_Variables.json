@@ -67,10 +67,13 @@
 		"variables": {
 			"IfCityExists": {
 				"type": "String"
+			},
+			"ConcatCity": {
+				"type": "Array"
 			}
 		},
 		"folder": {
-			"name": "Control Flow Activity"
+			"name": "Control Flow Activity/01_IF_Condition"
 		},
 		"annotations": []
 	}
