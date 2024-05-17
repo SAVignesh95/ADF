@@ -18,6 +18,11 @@
 				"defaultValue": "Mysore"
 			}
 		},
+		"variables": {
+			"IfCityExists": {
+				"type": "String"
+			}
+		},
 		"folder": {
 			"name": "Control Flow Activity"
 		},
