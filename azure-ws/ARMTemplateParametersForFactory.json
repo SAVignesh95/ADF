@@ -17,6 +17,9 @@
 		"LS_Completed_accountKey": {
 			"value": ""
 		},
+		"LS_Assignment_csv_txt_files_accountKey": {
+			"value": ""
+		},
 		"LS_ADLS_MetaData_properties_typeProperties_url": {
 			"value": "https://eystgaccnt.dfs.core.windows.net/"
 		},
@@ -24,6 +27,9 @@
 			"value": "https://eystgaccnt.dfs.core.windows.net/"
 		},
 		"LS_Completed_properties_typeProperties_url": {
+			"value": "https://eystgaccnt.dfs.core.windows.net/"
+		},
+		"LS_Assignment_csv_txt_files_properties_typeProperties_url": {
 			"value": "https://eystgaccnt.dfs.core.windows.net/"
 		}
 	}
