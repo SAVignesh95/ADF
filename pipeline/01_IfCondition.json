@@ -24,7 +24,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "IfCityExists",
-								"value": "False"
+								"value": "No"
 							}
 						}
 					],
