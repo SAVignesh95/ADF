@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "*.csv",
+				"fileName": "users_001.csv",
 				"folderPath": "user-profiles/raw",
 				"fileSystem": "adf-container"
 			},
