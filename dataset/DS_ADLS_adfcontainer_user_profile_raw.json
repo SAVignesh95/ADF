@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "users_001.csv",
-				"folderPath": "user-profiles/raw",
+				"fileName": "Inactive Users.txt",
+				"folderPath": "user-profiles/Assignment",
 				"fileSystem": "adf-container"
 			},
 			"columnDelimiter": ",",
