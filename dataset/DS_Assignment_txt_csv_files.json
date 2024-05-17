@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "user-profiles/Assignment/Assignment Output/txt files",
+				"folderPath": "user-profiles/Assignment/Assignment Output/csv files",
 				"fileSystem": "adf-container"
 			},
 			"columnDelimiter": ",",
