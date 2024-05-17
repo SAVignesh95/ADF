@@ -1,0 +1,12 @@
+{
+	"name": "DS_Assignment_txt_sql_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Assignment_txt_sql_output",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

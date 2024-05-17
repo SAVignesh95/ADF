@@ -87,8 +87,28 @@
 							"fileExtension": ".txt"
 						}
 					},
-					"enableStaging": false
-				}
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_Assigment_csv_txt__input_files",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_Assignment_txt_output",
+						"type": "DatasetReference"
+					}
+				]
 			},
 			{
 				"name": "json to sql",
@@ -133,13 +153,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DS_ADLS_adfcontainer_user_profile_output_json",
+						"referenceName": "DS_Assignment_json",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DS_user_info",
+						"referenceName": "DS_Assignment_json_sql_output",
 						"type": "DatasetReference"
 					}
 				]
@@ -169,7 +189,7 @@
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*",
+							"wildcardFileName": "*txt",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -183,11 +203,25 @@
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
+				"inputs": [
+					{
+						"referenceName": "DS_Assignment_txt_output",
+						"type": "DatasetReference"
+					}
+				],
 				"outputs": [
 					{
-						"referenceName": "DS_user_info",
+						"referenceName": "DS_Assignment_txt_sql_output",
 						"type": "DatasetReference"
 					}
 				]
