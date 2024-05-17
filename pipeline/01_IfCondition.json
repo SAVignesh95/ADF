@@ -1,0 +1,26 @@
+{
+	"name": "01_IfCondition",
+	"properties": {
+		"parameters": {
+			"listOfCitites": {
+				"type": "array",
+				"defaultValue": [
+					"New York",
+					"London",
+					"Tokyo",
+					"Delhi",
+					"Bengaluru",
+					"Chennai"
+				]
+			},
+			"cityToSearch": {
+				"type": "string",
+				"defaultValue": "Mysore"
+			}
+		},
+		"folder": {
+			"name": "Control Flow Activity"
+		},
+		"annotations": []
+	}
+}
