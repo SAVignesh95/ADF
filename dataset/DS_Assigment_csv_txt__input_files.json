@@ -1,0 +1,32 @@
+{
+	"name": "DS_Assigment_csv_txt__input_files",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Assignment_csv_txt_input_files",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "user-profiles/Assignment/csv and txt files",
+				"fileSystem": "adf-container"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Sr.No",
+				"type": "String"
+			},
+			{
+				"name": "network",
+				"type": "String"
+			}
+		]
+	}
+}

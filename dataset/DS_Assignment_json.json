@@ -1,0 +1,19 @@
+{
+	"name": "DS_Assignment_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Assignment_json_output",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "user-profiles/Assignment/Assignment Output/json files",
+				"fileSystem": "adf-container"
+			}
+		},
+		"schema": {}
+	}
+}
