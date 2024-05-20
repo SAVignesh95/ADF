@@ -3,9 +3,42 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Get Metadata for Azure SQL dB",
-				"type": "GetMetadata",
+				"name": "Fetch the tables list",
+				"type": "Lookup",
 				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT TABLE_SCHEMA,TABLE_NAME\nFROM user_db.INFORMATION_SCHEMA.TABLES\nWHERE TABLE_NAME IN ('Departments','Employees')",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DS_AzureSQL_CaseStudy",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Get Metadata1",
+				"type": "GetMetadata",
+				"dependsOn": [
+					{
+						"activity": "Fetch the tables list",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -19,10 +52,23 @@
 						"referenceName": "DS_AzureSQL_CaseStudy",
 						"type": "DatasetReference"
 					},
-					"fieldList": []
+					"fieldList": [
+						{
+							"value": "@activity('Fetch the tables list').output.value",
+							"type": "Expression"
+						}
+					]
 				}
 			}
 		],
+		"parameters": {
+			"SchemaName": {
+				"type": "string"
+			},
+			"TableName": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "Control Flow Activities/Case Study"
 		},

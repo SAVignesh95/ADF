@@ -1,0 +1,23 @@
+{
+	"name": "DS_ADLS_CaseStudy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLS_CaseStudy",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Employee dbo Export",
+				"fileSystem": "adf-container"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
