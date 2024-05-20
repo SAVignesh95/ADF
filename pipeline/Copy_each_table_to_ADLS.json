@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Fetch the tables list",
+				"name": "Lookup1",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -33,7 +33,7 @@
 				"type": "GetMetadata",
 				"dependsOn": [
 					{
-						"activity": "Fetch the tables list",
+						"activity": "Lookup1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -54,7 +54,7 @@
 					},
 					"fieldList": [
 						{
-							"value": "@activity('Fetch the tables list').output.value",
+							"value": "@activity('Lookup1').output.value",
 							"type": "Expression"
 						}
 					]
