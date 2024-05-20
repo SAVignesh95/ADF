@@ -1,0 +1,31 @@
+{
+	"name": "Copy_each_table_to_ADLS",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get Metadata for Azure SQL dB",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "DS_AzureSQL_CaseStudy",
+						"type": "DatasetReference"
+					},
+					"fieldList": []
+				}
+			}
+		],
+		"folder": {
+			"name": "Control Flow Activities/Case Study"
+		},
+		"annotations": []
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"name": "DS_AzureSQL_CaseStudy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSQL_CaseStudy",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
