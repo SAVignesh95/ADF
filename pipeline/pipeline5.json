@@ -15,10 +15,16 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"fieldList": [],
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"itemName",
+						"childItems"
+					],
 					"storeSettings": {
-						"type": "AzureBlobFSReadSettings",
-						"recursive": true,
+						"type": "AzureBlobStorageReadSettings",
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -58,13 +64,13 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"fieldList": [
-									"size",
-									"itemName"
-								],
+								"dataset": {
+									"referenceName": "DelimitedText1",
+									"type": "DatasetReference"
+								},
+								"fieldList": [],
 								"storeSettings": {
-									"type": "AzureBlobFSReadSettings",
-									"recursive": true,
+									"type": "AzureBlobStorageReadSettings",
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
