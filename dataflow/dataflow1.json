@@ -1,0 +1,60 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_user_info",
+						"type": "DatasetReference"
+					},
+					"name": "source"
+				},
+				{
+					"name": "sink"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "Selectreqcolumns"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          id as integer,",
+				"          name as string,",
+				"          dob as date,",
+				"          email as string,",
+				"          gender as string,",
+				"          country as string,",
+				"          region as string,",
+				"          city as string,",
+				"          asset as integer,",
+				"          marital_status as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> sink",
+				"source select(mapColumn(",
+				"          id,",
+				"          name,",
+				"          dob,",
+				"          email,",
+				"          gender,",
+				"          country,",
+				"          region,",
+				"          city,",
+				"          asset,",
+				"          marital_status",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> Selectreqcolumns"
+			]
+		}
+	}
+}
